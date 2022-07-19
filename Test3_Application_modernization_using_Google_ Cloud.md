@@ -93,6 +93,8 @@ End-to-end tests are very useful, but they're expensive to perform and can be ha
 
 **Cloud Build** can import source code from a variety of repositories or cloud storage spaces, execute a build to your specifications, and produce artifacts such as Docker containers or Java archives.
 
+[TUTORIAL](https://www.youtube.com/watch?v=rWEd9CYw9_s)
+
 ---
 ### 5.- Which Google Cloud solution can we use to store the container images of our applications?
 
@@ -103,4 +105,5 @@ End-to-end tests are very useful, but they're expensive to perform and can be ha
 
 **Container Registry** A private container image registry that supports Docker Image Manifest V2 and OCI image formats. It provides a subset of Artifact Registry features.
 
+[TUTORIAL](https://www.youtube.com/watch?v=_XAk5T_4-O0)
 ---

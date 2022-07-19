@@ -54,24 +54,27 @@ This event is sent when the metadata of an existing object changes.
 ## 3.- What precaution should be taken when making asynchronous calls within a Cloud Functions application? 
 
 - a) Make calls within the same project. 
-- b) Wait for the call to finish and return a termination notice to the Cloud Functions application through promises. 
+- b) **Wait for the call to finish and return a termination notice to the Cloud Functions application through promises.** 
 - c) Do not make more than two asynchronous calls in a single Cloud Functions application. 
 - d) Do not make fewer than two asynchronous calls in a single Cloud Functions application. 
+
+Explanation: If we do not inform Cloud Functions that an asynchronous call has ended, we might experience timeouts and unexpected behaviors.
 
 ---
 ## 4.- Which kind of environments are there for GAE? 
 
-- a) Standard and flexible 
+- a) **Standard and flexible** 
 - b) Standard and scalable 
 - c) Flexible and regional 
 - d) Flexible and scalable 
 
+[TUTORIAL](https://medium.com/google-cloud/scaling-google-app-engine-to-no-instances-or-maybe-just-1-37be4e8d4230)
 ---
 ## 5.- If we need to test a functionality in production without impacting all our users, which of the following functionalities can we use? 
 
 - a) HyperText Transfer Protocol (HTTP) functions with Cloud Functions
 - b) Background functions with Cloud Functions 
 - c) Call in/call out with GAE 
-- d) Traffic splitting with GAE
+- d) **Traffic splitting with GAE**
 
-
+[TUTORIAL](https://www.youtube.com/watch?v=bmh9gzi4UZI)

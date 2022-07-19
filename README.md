@@ -16,12 +16,6 @@
 - Section 14: Authentication and Authorization with Identity Aware Proxy
 - Section 15: Exploring DevOps and SRE
 - Section 16: Getting Started with Cloud Build
-- Section 
-- Section 
-- Section 
-- Section 
-- Section 
-
 
 ---
 ## OTROS
@@ -30,3 +24,5 @@ https://www.youtube.com/watch?v=N0bg2NzkpC4
 
 https://inthecloud.withgoogle.com/cloud-learning-paths-22/register.html
 
+WorkLoad Entity
+https://www.doit-intl.com/kubernetes-gke-workload-identity/

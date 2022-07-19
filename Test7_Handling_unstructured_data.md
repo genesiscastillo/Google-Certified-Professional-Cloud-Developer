@@ -7,7 +7,6 @@
 - c) Dual-region 
 - d) Zonal 
 
-
     ### Key concepts
     * You specify a location for storing your object data when you create a bucket.
     * You can select from the following location types:
@@ -15,20 +14,23 @@
         * **A dual-region** is a specific pair of regions, such as Tokyo and Osaka.
         * **A multi-region** is a large geographic area, such as the United States, that contains two or more geographic places.
 
----
+[TUTORIAL CLOUD STORAGE](https://www.youtube.com/watch?v=8DMOJ6Lgm7s)
 
+---
 ## 2.-If you have analytic processing on a compute layer using us-east-1, which type of location would you select for your bucket in Cloud Storage?
 
 - a) **Single-region**
 - b) Multi-region 
 - c) Dual-region 
-- d) Zonal 
+- d) Zonal
 
+    Explanation: If we have data-processing scenarios in a particular region, the recommended option is to select a regional bucket in order to improve performance in obtaining data and to reduce latency and usage costs.
 
     ### Compute Engine VM notes
     Storing data in the same region as your Compute Engine VM instances can provide better performance. This advantage applies to both regions and dual-regions.
     While you can't specify a Compute Engine zone as a bucket location, all Compute Engine VM instances in zones within a given region have similar performance when accessing buckets in that region.
 
+---
 ## 3.- If you have auditable information that must be stored for 10 years, which type of class would you select for your bucket in Cloud Storage? 
 
 - a) Standard 
@@ -54,12 +56,15 @@ Archive Storage|	ARCHIVE|	365 days
 
 [Other Informations](https://cloud.google.com/storage/pricing)
 
+---
 ## 4.- If you need to store all the information that is stored in a Cloud Storage bucket, including changes made to the original files, which Cloud Storage functionality would you use? 
 
 - a) **Object versioning** 
 - b) Bucket retention policy 
 - c) Object hold protection 
 - d) Access control 
+
+    Explanation: An object versioning configuration allows us to store multiple versions of the same object.
 
     ### Object Versioning
     To support the retrieval of objects that are deleted or replaced, Cloud Storage offers the Object Versioning feature. This page describes the feature and the options available when using it.
@@ -70,12 +75,17 @@ Archive Storage|	ARCHIVE|	365 days
     gsutil versioning set off gs://my-bucket-project
     ```
 
-## 5.- If you need to control access to files within your Cloud Storage bucket at an object level, which access method would you use? 
+---
+## 5.- If you need to "control access" to files within your Cloud Storage bucket at an object level, which access method would you use? 
 
 - a) Remote access 
-- b) **Uniform access**
-- c) Fine-grained access 
+- b) Uniform access
+- c) **Fine-grained access**
 - d) Unique access
+
+    Explanation: 
+    - fine-grained access configuration allows us to control access at an object level. 
+    - uniform access, which allows us to control access at a bucket level.
 
 ## Choose between uniform and fine-grained access
 When you create a bucket, you should decide whether you want to apply permissions using uniform or fine-grained access.
@@ -83,6 +93,5 @@ When you create a bucket, you should decide whether you want to apply permission
 * **Uniform (recommended):** Uniform bucket-level access allows you to use Identity and Access Management (IAM) alone to manage permissions. IAM applies permissions to all the objects contained inside the bucket or groups of objects with common name prefixes. IAM also allows you to use features that are not available when working with ACLs, such as IAM Conditions and Cloud Audit Logs.
 
 * **Fine-grained:** The fine-grained option enables you to use IAM and Access Control Lists (ACLs) together to manage permissions. ACLs are a legacy access control system for Cloud Storage designed for interoperability with Amazon S3. You can specify access and apply permissions at both the bucket level and per individual object.
-
 
 ![access_method](storage_access_method.png)

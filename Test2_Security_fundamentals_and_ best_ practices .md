@@ -47,7 +47,60 @@ Secret Manager is a secure and convenient storage system for API keys, passwords
 
 ```bash
 gcloud secrets create secret-id --replication-policy="automatic"
+```
+[Tutorial](https://blog.container-solutions.com/tutorial-how-to-set-external-secrets-with-gcp-secret-manager)
 
+```bash
+set project=<project-name-here>
+gcloud gcloud config set project $project
+gcloud services enable secretmanager.googleapis.com
+
+echo -ne '{"password":"itsasecret"}' | gcloud secrets create mysecret --data-file=-
+gcloud iam service-accounts create external-secrets
+gcloud secrets add-iam-policy-binding mysecret --member "serviceAccount:external-secrets@$project.iam.gserviceaccount.com" --role "roles/secretmanager.secretAccessor"
+
+gcloud iam service-accounts keys create key.json --iam-account=external-secrets@$project.iam.gserviceaccount.com
+kubectl create secret generic gcpsm-secret --from-file=secret-access-credentials=key.json
+```
+```yaml
+>cat <<EOF | kubectl apply -f - 
+apiVersion: external-secrets.io/v1alpha1
+kind: SecretStore
+metadata:
+  name: gcp-backend
+spec:
+  provider:
+      gcpsm:                                                  
+        auth:
+          secretRef:
+            secretAccessKeySecretRef:
+              name: gcpsm-secret                        
+              key: secret-access-credentials                              
+        projectID: $project
+---
+apiVersion: external-secrets.io/v1alpha1
+kind: ExternalSecret
+metadata:
+  name: gcp-external-secret
+spec:
+  secretStoreRef:
+    kind: SecretStore
+    name: gcp-backend          
+  target:                                                             
+    name: secret-to-be-created 
+  data:                                                       
+  - secretKey: password_file 
+    remoteRef:            
+      key: mysecret       
+>EOFs
+```
+```bash
+kubectl get secret secret-to-be-created -o jsonpath='{.data.password_file}' | base64 -d
+{"password":"itsasecret"}% 
+
+kubectl get es   #ExternalSecrets 
+NAME                  STORE         REFRESH INTERVAL   STATUS
+gcp-external-secret   gcp-backend   1h                 SecretSynced
 ```
 
 ---
